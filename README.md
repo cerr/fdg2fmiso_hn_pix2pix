@@ -1,2 +1,1 @@
-# fdg2fmiso_hn_pix2pix
-Convert FDG scan to TBR
+AI model to convert FDG scan to TBR
