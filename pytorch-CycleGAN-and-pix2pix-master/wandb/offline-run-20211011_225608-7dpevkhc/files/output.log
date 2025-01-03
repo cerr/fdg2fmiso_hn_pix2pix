@@ -1,0 +1,36 @@
+create web directory ./checkpoints/facades_pix2pix/web...
+learning rate 0.0002000 -> 0.0002000
+/home/zhaow2/anaconda3/envs/tf1/lib/python3.6/site-packages/torch/optim/lr_scheduler.py:136: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  "https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate", UserWarning)
+Traceback (most recent call last):
+  File "/home/zhaow2/anaconda3/envs/tf1/lib/python3.6/multiprocessing/queues.py", line 240, in _feed
+    send_bytes(obj)
+  File "/home/zhaow2/anaconda3/envs/tf1/lib/python3.6/multiprocessing/connection.py", line 200, in send_bytes
+    self._send_bytes(m[offset:offset + size])
+  File "/home/zhaow2/anaconda3/envs/tf1/lib/python3.6/multiprocessing/connection.py", line 404, in _send_bytes
+    self._send(header + buf)
+  File "/home/zhaow2/anaconda3/envs/tf1/lib/python3.6/multiprocessing/connection.py", line 368, in _send
+    n = write(self._handle, buf)
+BrokenPipeError: [Errno 32] Broken pipe
+Traceback (most recent call last):
+  File "train.py", line 52, in <module>
+    model.optimize_parameters()   # calculate loss functions, get gradients, update network weights
+  File "/lila/home/zhaow2/pytorch-CycleGAN-and-pix2pix-master/models/pix2pix_model.py", line 121, in optimize_parameters
+    self.backward_D()                # calculate gradients for D
+  File "/lila/home/zhaow2/pytorch-CycleGAN-and-pix2pix-master/models/pix2pix_model.py", line 98, in backward_D
+    pred_real = self.netD(real_AB)
+  File "/home/zhaow2/anaconda3/envs/tf1/lib/python3.6/site-packages/torch/nn/modules/module.py", line 727, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/lila/home/zhaow2/pytorch-CycleGAN-and-pix2pix-master/models/networks.py", line 583, in forward
+    return self.model(input)
+  File "/home/zhaow2/anaconda3/envs/tf1/lib/python3.6/site-packages/torch/nn/modules/module.py", line 727, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/zhaow2/anaconda3/envs/tf1/lib/python3.6/site-packages/torch/nn/modules/container.py", line 117, in forward
+    input = module(input)
+  File "/home/zhaow2/anaconda3/envs/tf1/lib/python3.6/site-packages/torch/nn/modules/module.py", line 727, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/zhaow2/anaconda3/envs/tf1/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 423, in forward
+    return self._conv_forward(input, self.weight)
+  File "/home/zhaow2/anaconda3/envs/tf1/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 420, in _conv_forward
+    self.padding, self.dilation, self.groups)
+KeyboardInterrupt
