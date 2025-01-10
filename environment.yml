@@ -12,5 +12,6 @@ dependencies:
 - visdom
 - wandb==0.12.18
 - dominate==2.6.0
+- pip
 - pip:
   - "pyCERR[napari] @ git+https://github.com/cerr/pyCERR"
