@@ -1,4 +1,4 @@
-name: fdg2fmiso2
+name: fdg2fmiso
 channels:
 - pytorch
 - defaults
