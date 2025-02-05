@@ -43,6 +43,7 @@ def process_image(planC, strNum):
     grid_type = 'center'
     #resamp_method = 'sitkBSpline'
     resamp_method = 'sitkLinear'
+    mask_resamp_method = 'sitkNearestNeighbor'
     output_res = [0.195, 0.195, 0]  # Output res: 1mm x 1mm in-plane
 
     resize_method = 'pad2d'
@@ -67,7 +68,7 @@ def process_image(planC, strNum):
     resamp_mask_arr = imgResample3D(outline_mask_arr.astype(float),
                                      x_vals, y_vals, z_vals,
                                      x_resample, y_resample, z_resample,
-                                     resamp_method, inPlane=True) >= 0.5
+                                     mask_resamp_method, inPlane=True) >= 0.5
     resamp_mask_arr = resamp_mask_arr.astype(int)
     resample_grid = [x_resample, y_resample, z_resample]
     planC = pc.importScanArray(resamp_scan_arr,
