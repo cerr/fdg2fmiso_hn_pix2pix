@@ -50,7 +50,8 @@ def process_image(planC, strNum):
     out_size = [32, 32]
 
     # Get scan array
-    scan_num = getScanNumFromIdentifier(identifier, planC)[0]
+    #scan_num = getScanNumFromIdentifier(identifier, planC)[0]
+    scan_num = 1 # 2nd scan, which is zeroed out outside GTV
     x_vals, y_vals, z_vals = planC.scan[scan_num].getScanXYZVals()
     scan_arr = planC.scan[scan_num].getScanArray()
 
@@ -71,10 +72,10 @@ def process_image(planC, strNum):
                                      mask_resamp_method, inPlane=True) >= 0.5
     resamp_mask_arr = resamp_mask_arr.astype(int)
     resample_grid = [x_resample, y_resample, z_resample]
-    planC = pc.importScanArray(resamp_scan_arr,
-                                   resample_grid[0], resample_grid[1], resample_grid[2],
-                                   modality, scan_num, planC)
-    resample_scan_num = len(planC.scan) - 1
+    #planC = pc.importScanArray(resamp_scan_arr,
+    #                               resample_grid[0], resample_grid[1], resample_grid[2],
+    #                               modality, scan_num, planC)
+    #resample_scan_num = len(planC.scan) - 1
 
     return resamp_scan_arr, resamp_mask_arr, resample_grid
 
@@ -138,6 +139,13 @@ def main(argv):
     planC = pc.loadNiiScan(ptScanFile, imageType="PT SCAN")
     planC = pc.loadNiiStructure(gtvSegFile, 0, planC, {1: 'GTV'})
 
+    # Zero out intensities outside the ROI
+    scan3M = planC.scan[0].getScanArray()
+    mask3M = rs.getStrMask(0, planC)
+    scan3M[~mask3M] = 0
+    xV, yV, zV = planC.scan[0].getScanXYZVals()
+    planC = pc.importScanArray(scan3M, xV, yV, zV, 'PT',0, planC)
+
     # Split GTV into components
     mask3M = rs.getStrMask(0, planC)
     labeledmask3M, numFeatures = label(mask3M, structure=np.ones((3, 3, 3)))
@@ -154,7 +162,7 @@ def main(argv):
         #scan_vol, mask_vol, resize_grid, limits, resamp_mask_arr, resampGrid, valid_slices, planC = process_image(planC)
         scan_vol, mask_vol, resample_grid = process_image(planC, strNum)
         mask_vol = mask_vol.astype(float)
-        scan_vol[mask_vol < 1] = 0
+        #scan_vol[mask_vol < 1] = 0
         _, _, slcV = np.where(mask_vol)
         slcMin = slcV.min()
         slcMax = slcV.max()
