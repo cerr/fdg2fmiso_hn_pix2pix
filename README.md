@@ -13,7 +13,7 @@ conda env create -f environment.yml
 ```
 python infer_tbr.py /path/to/fdg_and_gtv_seg /path/to/TBR_output
 ```
-The FDG image should be in lean boday SUV. The inference script includes the following pre-processing steps:
+The FDG image should be in lean body mass SUV. The inference script includes the following pre-processing steps:
 - Image resampling: Bilinear interpolation for FDG, nearest neighbor for tumor mask
 - Zero-out pixel values outside the tumor mask, split tumor segmentation into connected components and extract 32 by 32 axial slice where tumor is centered
 - Normalization of image pixel values to [-1, 1]
