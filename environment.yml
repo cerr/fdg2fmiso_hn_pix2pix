@@ -14,4 +14,4 @@ dependencies:
 - dominate==2.6.0
 - pip
 - pip:
-  - "pyCERR[napari] @ git+https://github.com/cerr/pyCERR"
+  - "pyCERR @ git+https://github.com/cerr/pyCERR"
